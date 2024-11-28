@@ -38,7 +38,6 @@ namespace PowerBsRise.Models
             get { return _permissions; }
             set { _permissions = value; }
         }
-
         public static void Authenticate(string username, string password)
         {
             throw new NotImplementedException();
