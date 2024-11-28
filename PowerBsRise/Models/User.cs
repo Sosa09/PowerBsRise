@@ -38,6 +38,7 @@ namespace PowerBsRise.Models
             get { return _permissions; }
             set { _permissions = value; }
         }
+        private static Authorization _userAuthenticationStatus = Authorization.Unauthorized;
         public static void Authenticate(string username, string password)
         {
             throw new NotImplementedException();
@@ -45,6 +46,11 @@ namespace PowerBsRise.Models
         public static void LoadProfile()
         {
             throw new NotImplementedException();
+        }
+
+        public static Authorization GetUserAuthenticationStatus()
+        {
+            return _userAuthenticationStatus;
         }
     }
 }
