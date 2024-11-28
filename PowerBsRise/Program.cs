@@ -1,4 +1,5 @@
-﻿namespace PowerBsRise
+﻿using System;
+namespace PowerBsRise
 {
     internal class Program
     {
