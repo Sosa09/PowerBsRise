@@ -6,37 +6,46 @@ using System.Threading.Tasks;
 
 namespace PowerBsRise.Models
 {
-    public class User
+    public static class User
     {
-        private int _id;
-        public int ID
+        private static int _id;
+        public static int ID
         {
             get { return _id; }
             set { _id = value; }
         }
-        private string _name;
-        public string Name
+        private static string _name;
+        public static string Name
         {
             get { return _name; }
             set { _name = value; }
         }
-        private Role _pRole;
-        public Role PRole
+        private static Role _role;
+        public static Role Role
         {
-            get { return _pRole; }
-            set { _pRole = value; }
+            get { return _role; }
+            set { _role = value; }
         }
-        private List<Group> _groups;
-        public List<Group> Groups
+        private static List<Group> _groups;
+        public static List<Group> Groups
         {
             get { return _groups; }
             set { _groups = value; }
         }
-        private List<Permission> _permissions;
-        public List<Permission> Permissions
+        private static List<Permission> _permissions;
+        public static List<Permission> Permissions
         {
             get { return _permissions; }
             set { _permissions = value; }
+        }
+
+        public static void Authenticate(string username, string password)
+        {
+            throw new NotImplementedException();
+        }
+        public static void LoadProfile()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,11 +1,18 @@
-﻿using System;
+﻿using PowerBsRise.Models;
 namespace PowerBsRise
 {
     public class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            bool userAuthenticatedSuccessfully = false;
+            while (!userAuthenticatedSuccessfully)
+            {
+                
+                
+            }
+            
         }
+
     }
 }
