@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace PowerBsRise.Models
 {
-    internal class Role
+    public enum Role
     {
+        HelpDeskSupportAdmin,
+        SecondLineSupportAdmin,
+        SpecialistEngineer,
+        DigitalManager,
+        DigitalOperationsManager
     }
 }
