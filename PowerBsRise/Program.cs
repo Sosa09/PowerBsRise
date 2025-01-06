@@ -33,13 +33,9 @@ namespace PowerBsRise
                 {
                     UserInterface.DisplayUnexpectedException(ex.Message);
                 }
-
                 if (User.GetUserAuthenticationStatus() == Authorization.Unauthorized) UserInterface.DisplayUserAuthenticationFailed();
             }
-
             UserInterface.DisplayUserAuthenticationSucceded(User.Name);
         }
-
-
     }
 }
