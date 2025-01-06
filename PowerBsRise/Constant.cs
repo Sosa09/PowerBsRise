@@ -8,5 +8,6 @@ namespace PowerBsRise
 {
     public class Constant
     {
+
     }
 }

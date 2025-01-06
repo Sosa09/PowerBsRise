@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PowerBsRise
 {
@@ -20,11 +16,23 @@ namespace PowerBsRise
         }
         public static void DisplayUserAuthenticationFailed()
         {
-            Console.WriteLine("The usernaem and/or password you've entered is incorrect, please try again");
+            Console.WriteLine("The username and/or password you've entered is incorrect, please try again");
         }
         internal static void DisplayUserAuthenticationSucceded(string name)
         {
             Console.WriteLine($"Welcome, {name}");
+        }
+        public static void DisplayUserNotFoundMessage(string username)
+        {
+            Console.WriteLine($"username: {username} could not be found in the database, check your username and try again !");
+        }
+        public static void DisplayUserPasswordCombinationIncorrectMessage(string username)
+        {
+            Console.WriteLine($"The comination of the username {username} and password does not match !");
+        }
+        public static void DisplayUnexpectedException(string message)
+        {
+            Console.WriteLine(message);
         }
     }
 }
