@@ -36,7 +36,7 @@ namespace PowerBsRise
         }
         public static void DisplayFileNotFoundExceptionMessage(string path)
         {
-            Console.WriteLine(path)
+            Console.WriteLine(path);
         }
     }
 }

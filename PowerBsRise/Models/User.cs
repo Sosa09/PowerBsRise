@@ -18,13 +18,7 @@ namespace PowerBsRise.Models
 
         public static List<Permission> Permissions { get; set; }
         private static Authorization _userAuthenticationStatus = Authorization.Unauthorized;
-        public static void Authenticate(string username, string password)
-        {
-            //write instruction to check wether a user exists or not and return an exception if user not exists
 
-            //open the json file
-            //check if username and password exists
-        }
         public static void LoadProfile()
         {
             //can only be loaded if user has been authenticated properly
