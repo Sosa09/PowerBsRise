@@ -1,4 +1,6 @@
 ﻿using PowerBsRise.Models;
+using PowerBsRise.Services;
+using PowerBsRise.Views;
 using System;
 using System.IO;
 using System.Security.Authentication;
@@ -15,7 +17,7 @@ namespace PowerBsRise
                 string password = UserInterface.GetPassword();
                 try
                 {
-                    User.Authenticate(userName, password);
+                    AuthenticationService.Authenticate(userName, password);
                 }
                 catch (FileNotFoundException)
                 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PowerBsRise
+namespace PowerBsRise.Views
 {
     public static class UserInterface
     {
