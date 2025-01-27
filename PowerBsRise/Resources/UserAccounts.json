@@ -1,18 +1,18 @@
-{
-  "DoeJohn": {
+[
+  {
     "name": "Doe",
     "first_name": "John",
-    "role": "",
+    "role": 0,
     "groups": [],
     "permissions": [],
-    "password" : "12345"
-  }
-  "FoeBill": {
+    "password": "12345"
+  },
+  {
     "name": "Foe",
     "first_name": "Bill",
-    "role": "",
+    "role": 1,
     "groups": [],
     "permissions": [],
     "password": "15487923"
   }
-}
+]

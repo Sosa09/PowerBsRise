@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace PowerBsRise.Models
 {
-    public static class User
+    public class User
     {
-        public static int ID { get; set; }
-        public static string Name { get; set; }
-        public static Role Role { get; set; }
-        public static List<Group> Groups { get; set; }
-        public static List<Permission> Permissions { get; set; }
-        private static Authorization _userAuthenticationStatus = Authorization.Unauthorized;
-        public static Authorization GetUserAuthenticationStatus()
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public Role Role { get; set; }
+        public List<Group> Groups { get; set; }
+        public List<Permission> Permissions { get; set; }
+        private  Authorization _userAuthenticationStatus = Authorization.Unauthorized;
+        public Authorization GetUserAuthenticationStatus()
         {
             return _userAuthenticationStatus;
         }

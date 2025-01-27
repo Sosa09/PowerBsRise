@@ -11,8 +11,9 @@ namespace PowerBsRise
     {
         static void Main(string[] args)
         {
+            User user = new User();
             //instruction to authenticate user
-            while (User.GetUserAuthenticationStatus() == Authorization.Unauthorized)
+            while (user.GetUserAuthenticationStatus() == Authorization.Unauthorized)
             {
                 //Ask username and password of the end user
                 string userName = UserInterface.GetUserName();
@@ -23,7 +24,7 @@ namespace PowerBsRise
                 }
                 catch (FileNotFoundException)
                 {
-                    UserInterface.DisplayUserNotFoundMessage(Constant.PATH_TO_JSON_DATABASE);
+                    UserInterface.DisplayUserNotFoundMessage(userName);
                 }
                 catch (UserNotFoundException)
                 {
@@ -37,9 +38,8 @@ namespace PowerBsRise
                 {
                     UserInterface.DisplayUnexpectedException(ex.Message);
                 }
-                if (User.GetUserAuthenticationStatus() == Authorization.Unauthorized) UserInterface.DisplayUserAuthenticationFailed();
             }
-            UserInterface.DisplayUserAuthenticationSucceded(User.Name);
+            UserInterface.DisplayUserAuthenticationSucceded(user.Name);
         }
     }
 }
