@@ -11,13 +11,14 @@ namespace PowerBsRise
     {
         static void Main(string[] args)
         {
+            //instruction to authenticate user
             while (User.GetUserAuthenticationStatus() == Authorization.Unauthorized)
             {
                 string userName = UserInterface.GetUserName();
                 string password = UserInterface.GetPassword();
                 try
                 {
-                    AuthenticationService.Authenticate(userName, password);
+                    AuthenticationService.AuthenticateUser(userName, password);
                 }
                 catch (FileNotFoundException)
                 {
