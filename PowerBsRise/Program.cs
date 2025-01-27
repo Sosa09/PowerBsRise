@@ -14,6 +14,7 @@ namespace PowerBsRise
             //instruction to authenticate user
             while (User.GetUserAuthenticationStatus() == Authorization.Unauthorized)
             {
+                //Ask username and password of the end user
                 string userName = UserInterface.GetUserName();
                 string password = UserInterface.GetPassword();
                 try

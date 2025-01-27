@@ -13,8 +13,7 @@ namespace PowerBsRise.Services
         {
 
             //instruction to authenticate
-            User u = new User();
-            return User.;
+            
         }
     }
 }
