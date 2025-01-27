@@ -1,4 +1,6 @@
-﻿namespace PowerBsRise.Services
+﻿using PowerBsRise.Models;
+
+namespace PowerBsRise.Services
 {
     public static class UserService
     {
@@ -8,5 +10,7 @@
     
             
         }
+
+
     }
 }

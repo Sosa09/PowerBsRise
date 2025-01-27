@@ -18,6 +18,7 @@ namespace PowerBsRise.Services
             if (user == null){
                 throw new UserNotFoundException();
             }
+            user.SetUserAuhtenticationStatus(Authorization.Authorized);
             return user;
         }        
     }

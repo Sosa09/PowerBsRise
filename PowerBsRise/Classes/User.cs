@@ -14,5 +14,9 @@ namespace PowerBsRise.Models
         {
             return _userAuthenticationStatus;
         }
+        public void SetUserAuhtenticationStatus(Authorization authorization)
+        {
+            _userAuthenticationStatus = authorization;
+        }
     }
 }

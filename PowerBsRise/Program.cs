@@ -20,7 +20,7 @@ namespace PowerBsRise
                 string password = UserInterface.GetPassword();
                 try
                 {
-                    AuthenticationService.AuthenticateUser(userName, password);
+                    AuthenticationService.AuthenticateUser(userName, password);                    
                 }
                 catch (FileNotFoundException)
                 {
