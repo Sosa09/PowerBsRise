@@ -2,8 +2,10 @@
 using PowerBsRise.Services;
 using PowerBsRise.Views;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Security.Authentication;
+using System.Xml.Serialization;
 
 namespace PowerBsRise
 {
@@ -36,10 +38,72 @@ namespace PowerBsRise
                 }
                 catch(Exception ex)
                 {
-                    UserInterface.DisplayUnexpectedException(ex.Message);
+                    UserInterface.DisplayUnexpectedExceptionMessage(ex.Message);
                 }
             }
+
             UserInterface.DisplayUserAuthenticationSucceded(user.Name);
+            //use a while loop approach to enter to each sub menu or go back and while it s not log out keep looping
+            while(true)
+            {
+                GenerateMenu();
+                ChooseMenuOption(3);
+            }
+       
+            
+        }
+        /// <summary>
+        /// Used to generate the different menus accross the tool.
+        /// by passing some arguments the tool will redirect the end user to the main menu or sub menus depending on the end user's choice
+        /// </summary>
+        static void GenerateMenu()
+        {
+            //let's start with displaying main options in the menu 
+            List<string> mainMenu = new List<string>
+            {
+                "My Profile",
+                "Opening hours Management",
+                "Back"
+            };
+            UserInterface.DisplayMenu(mainMenu);
+        }
+        /// <summary>
+        /// function that will handle the end users menu option choice
+        /// </summary>
+        static int ChooseMenuOption(int maxOptionCount)
+        {
+            //consider adding a max position that way if the end user enter a position that does not exists throw indexoutofrangeexcep.
+            int position = 0;
+            try
+            {
+                string choice = UserInterface.GetEndUserMenuOptionChoice();
+                if (choice == null)
+                {
+                    throw new ArgumentNullException(nameof(choice));    
+                }
+                if (!int.TryParse(choice, out position))
+                {
+                    throw new InvalidCastException();
+                }
+                if (position > 2)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                return position;
+            }
+            catch (ArgumentNullException e)
+            {
+                //to create
+            }
+            catch(InvalidCastException e)
+            {
+                UserInterface.DisplayInvalidCastErrorExceptionMessage(e.Message);
+            }
+            catch(IndexOutOfRangeException e)
+            {
+                UserInterface.DisplayInvalidMenuOptionMessage(e.Message);
+            }
+            return position;
         }
     }
 }

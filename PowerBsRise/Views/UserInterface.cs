@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace PowerBsRise.Views
 {
@@ -18,7 +21,7 @@ namespace PowerBsRise.Views
         {
             Console.WriteLine("The username and/or password you've entered is incorrect, please try again");
         }
-        internal static void DisplayUserAuthenticationSucceded(string name)
+        public static void DisplayUserAuthenticationSucceded(string name)
         {
             Console.WriteLine($"Welcome, {name}");
         }
@@ -30,9 +33,29 @@ namespace PowerBsRise.Views
         {
             Console.WriteLine($"The comination of the username {username} and password does not match !");
         }
-        public static void DisplayUnexpectedException(string message)
+        public static void DisplayMenu(List<string> mainMenu)
         {
-            Console.WriteLine(message);
+            int position = 0;
+            mainMenu.ForEach(x => Console.WriteLine($"{position++}: {x}"));
+        }
+        public static string GetEndUserMenuOptionChoice()
+        {
+            Console.WriteLine("Enter your choice: ");
+            return Console.ReadLine();
+        }
+
+        public static void DisplayInvalidMenuOptionMessage(string errorMessage)
+        {
+            Console.WriteLine($"{errorMessage}\nThe menu option you try to access is not a valid option, please try again.");
+        }
+
+        public static void DisplayInvalidCastErrorExceptionMessage(string errorMessage)
+        {
+            Console.WriteLine($"{errorMessage}");
+        }
+        public static void DisplayUnexpectedExceptionMessage(string errorMessage)
+        {
+            Console.WriteLine(errorMessage);
         }
         public static void DisplayFileNotFoundExceptionMessage(string path)
         {
