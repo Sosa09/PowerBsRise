@@ -41,13 +41,12 @@ namespace PowerBsRise
                     UserInterface.DisplayUnexpectedExceptionMessage(ex.Message);
                 }
             }
-
             UserInterface.DisplayUserAuthenticationSucceded(user.Name);
             //use a while loop approach to enter to each sub menu or go back and while it s not log out keep looping
             while(true)
             {
                 GenerateMainMenu();
-                ChooseMenuOption(3);
+                ChooseMenuOption(Constant.MAX_MAIN_MENU_VALUE); //only for test 
             }                  
         }
         /// <summary>
