@@ -48,9 +48,7 @@ namespace PowerBsRise
             {
                 GenerateMainMenu();
                 ChooseMenuOption(3);
-            }
-       
-            
+            }                  
         }
         /// <summary>
         /// Used to generate the different menus accross the tool.

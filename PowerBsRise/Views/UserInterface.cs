@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace PowerBsRise.Views
@@ -46,20 +47,24 @@ namespace PowerBsRise.Views
 
         public static void DisplayInvalidMenuOptionMessage(string errorMessage)
         {
+            Debug.WriteLine(errorMessage);
             Console.WriteLine($"{errorMessage}\nThe menu option you try to access is not a valid option, please try again.");
         }
 
         public static void DisplayInvalidCastErrorExceptionMessage(string errorMessage)
         {
-            Console.WriteLine($"{errorMessage}");
+            Debug.WriteLine(errorMessage);
+            Console.WriteLine($"The value you've entered is not valid, please try again");
         }
         public static void DisplayUnexpectedExceptionMessage(string errorMessage)
         {
+            Debug.WriteLine(errorMessage);
             Console.WriteLine(errorMessage);
         }
-        public static void DisplayFileNotFoundExceptionMessage(string path)
+        public static void DisplayFileNotFoundExceptionMessage(string errorMessage)
         {
-            Console.WriteLine(path);
+            Debug.WriteLine($"{errorMessage}");
+            Console.WriteLine("The file you try to access doesn't exists, please try again.");
         }
     }
 }
