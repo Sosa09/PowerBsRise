@@ -46,7 +46,7 @@ namespace PowerBsRise
             //use a while loop approach to enter to each sub menu or go back and while it s not log out keep looping
             while(true)
             {
-                GenerateMenu();
+                GenerateMainMenu();
                 ChooseMenuOption(3);
             }
        
@@ -55,17 +55,11 @@ namespace PowerBsRise
         /// <summary>
         /// Used to generate the different menus accross the tool.
         /// by passing some arguments the tool will redirect the end user to the main menu or sub menus depending on the end user's choice
+        ///
         /// </summary>
-        static void GenerateMenu()
-        {
-            //let's start with displaying main options in the menu 
-            List<string> mainMenu = new List<string>
-            {
-                "My Profile",
-                "Opening hours Management",
-                "Back"
-            };
-            UserInterface.DisplayMenu(mainMenu);
+        static void GenerateMainMenu()
+        {            
+            UserInterface.DisplayMenu(Constant.MAIN_MENU_OPTIONS);
         }
         /// <summary>
         /// function that will handle the end users menu option choice
@@ -93,7 +87,7 @@ namespace PowerBsRise
             }
             catch (ArgumentNullException e)
             {
-                //to create
+                //todo
             }
             catch(InvalidCastException e)
             {
