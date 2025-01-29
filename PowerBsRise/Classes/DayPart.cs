@@ -5,7 +5,6 @@ namespace PowerBsRise.Models
     public class DayPart
     {
         private int _id;
-
         public int ID
         {
             get { return _id; }

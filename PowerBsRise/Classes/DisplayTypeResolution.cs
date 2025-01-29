@@ -3,7 +3,6 @@
     public class DisplayTypeResolution
     {
         private int _id;
-
         public int ID
         {
             get { return _id; }
