@@ -12,6 +12,7 @@ namespace PowerBsRise
         static void Main(string[] args)
         {
             User user = new User();
+            int maxOptionCount = new int();
             //instruction to authenticate user
             while (user.GetUserAuthenticationStatus() == Authorization.Unauthorized)
             {
@@ -45,8 +46,8 @@ namespace PowerBsRise
             {
                 UserInterface.DisplayMenu(Constant.MAIN_MENU_OPTIONS);
                 string choice = UserInterface.GetEndUserMenuOptionChoice();
-                int maxOptionCount = Constant.MAIN_MENU_OPTIONS.Count;
-                GoMenu(maxOptionCount, choice); //only for test 
+                maxOptionCount = Constant.MAIN_MENU_OPTIONS.Count;
+                GoToMenu(maxOptionCount, choice); //only for test 
             }                  
         }
         /// <summary>
@@ -55,10 +56,11 @@ namespace PowerBsRise
         /// </summary>
         /// <param name="maxOptionCount"></param>
         /// <param name="choice"></param>
-        static void GoMenu(int maxOptionCount, string choice)
+        static void GoToMenu(int maxOptionCount, string choice)
         {
             try
             {
+                //todo: consider using a dedicated function to check the errors and return the exception.
                 if (choice == null)
                 {
                     throw new ArgumentNullException(nameof(choice));    
