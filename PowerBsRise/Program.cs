@@ -76,7 +76,7 @@ namespace PowerBsRise
                 {
                     throw new InvalidCastException();
                 }
-                if (position > 2)
+                if (position > maxOptionCount)
                 {
                     throw new IndexOutOfRangeException();
                 }
