@@ -66,5 +66,15 @@ namespace PowerBsRise.Views
             Debug.WriteLine($"{errorMessage}");
             Console.WriteLine("The file you try to access doesn't exists, please try again.");
         }
+
+        internal static void DisplayMenu(object oPENING_HOURS_MENU_OPTIONS)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void DisplayMenu(object pROFILE_MENU_OPTIONS)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

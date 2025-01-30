@@ -44,14 +44,14 @@ namespace PowerBsRise
             //use a while loop approach to enter to each sub menu or go back and while it s not log out keep looping
             while(true)
             {
-                UserInterface.DisplayMenu(Constant.MAIN_MENU_OPTIONS);
+                UserInterface.DisplayMenu(Constants.MAIN_MENU_OPTIONS);
                 string choice = UserInterface.GetEndUserMenuOptionChoice();
-                maxOptionCount = Constant.MAIN_MENU_OPTIONS.Count;
+                maxOptionCount = Constants.MAIN_MENU_OPTIONS.Count;
                 GoToMenu(maxOptionCount, choice); //only for test 
             }                  
         }
         /// <summary>
-        /// function will handle the navigation in the different menus it takes 2 params one that will count the total elements present in the displayed menu 
+        /// function will handle the navigation from the main menu it takes 2 params one that will count the total elements present in the displayed menu 
         /// and other one is used to navigate to the correct menu
         /// </summary>
         /// <param name="maxOptionCount"></param>
@@ -63,20 +63,34 @@ namespace PowerBsRise
                 //todo: consider using a dedicated function to check the errors and return the exception.
                 if (choice == null)
                 {
-                    throw new ArgumentNullException(nameof(choice));    
+                    throw new ArgumentNullException(nameof(choice));
                 }
-                if (!int.TryParse(choice, out int parsedChoice))
+                if (!int.TryParse(choice, out int parsedChoice)) //if parse succeeded parsedChoice will be used as the expression in the switch case to navigate
                 {
                     throw new InvalidCastException();
                 }
-                if (parsedChoice > maxOptionCount)
+                if (parsedChoice > maxOptionCount) //check if parsedChoice is higher than the menu total element count
                 {
                     throw new IndexOutOfRangeException();
+                }
+                switch (parsedChoice)
+                {
+                    case 0:
+                        UserInterface.DisplayMenu(Constants.OPENING_HOURS_MENU_OPTIONS);
+                        break;
+                    case 1:
+                        UserInterface.DisplayMenu(Constants.PROFILE_MENU_OPTIONS);
+                        break;
+                    case 2:
+                        //logout return to login !
+                        break;
+                    default:
+                        break;
                 }
             }
             catch (ArgumentNullException e)
             {
-                //todo
+                //todo: implement message for null exception
             }
             catch(InvalidCastException e)
             {
