@@ -2,10 +2,8 @@
 using PowerBsRise.Services;
 using PowerBsRise.Views;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Security.Authentication;
-using System.Xml.Serialization;
 
 namespace PowerBsRise
 {
@@ -45,42 +43,34 @@ namespace PowerBsRise
             //use a while loop approach to enter to each sub menu or go back and while it s not log out keep looping
             while(true)
             {
-                GenerateMainMenu();
-                ChooseMenuOption(Constant.MAX_MAIN_MENU_VALUE); //only for test 
+                UserInterface.DisplayMenu(Constant.MAIN_MENU_OPTIONS);
+                string choice = UserInterface.GetEndUserMenuOptionChoice();
+                int maxOptionCount = Constant.MAIN_MENU_OPTIONS.Count;
+                GoMenu(maxOptionCount, choice); //only for test 
             }                  
         }
         /// <summary>
-        /// Used to generate the different menus accross the tool.
-        /// by passing some arguments the tool will redirect the end user to the main menu or sub menus depending on the end user's choice
-        ///
+        /// function will handle the navigation in the different menus it takes 2 params one that will count the total elements present in the displayed menu 
+        /// and other one is used to navigate to the correct menu
         /// </summary>
-        static void GenerateMainMenu()
-        {            
-            UserInterface.DisplayMenu(Constant.MAIN_MENU_OPTIONS);
-        }
-        /// <summary>
-        /// function that will handle the end users menu option choice
-        /// </summary>
-        static int ChooseMenuOption(int maxOptionCount)
+        /// <param name="maxOptionCount"></param>
+        /// <param name="choice"></param>
+        static void GoMenu(int maxOptionCount, string choice)
         {
-            //consider adding a max position that way if the end user enter a position that does not exists throw indexoutofrangeexcep.
-            int position = 0;
             try
             {
-                string choice = UserInterface.GetEndUserMenuOptionChoice();
                 if (choice == null)
                 {
                     throw new ArgumentNullException(nameof(choice));    
                 }
-                if (!int.TryParse(choice, out position))
+                if (!int.TryParse(choice, out int parsedChoice))
                 {
                     throw new InvalidCastException();
                 }
-                if (position > maxOptionCount)
+                if (parsedChoice > maxOptionCount)
                 {
                     throw new IndexOutOfRangeException();
                 }
-                return position;
             }
             catch (ArgumentNullException e)
             {
@@ -93,8 +83,7 @@ namespace PowerBsRise
             catch(IndexOutOfRangeException e)
             {
                 UserInterface.DisplayInvalidMenuOptionMessage(e.Message);
-            }
-            return position;
+            }         
         }
     }
 }
