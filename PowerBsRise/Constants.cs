@@ -12,8 +12,8 @@ namespace PowerBsRise
         public const int MENU_OPENING_HOURS = 0;
         public const int MENU_PROFILE = 1;
         public const int MENU_LOGOUT = 2;
-        public const int OPENING_HOURS_FETCH = 0;
-        public const int OPENING_HOURS_UPDATE = 1;        
-        public const int OPENING_HOURS_CONVERT = 2;
+        public const int OPERATING_HOUR_FETCH_OPTION = 0;
+        public const int OPERATING_HOUR_UPDATE_OPTION = 1;        
+        public const int OPERATING_HOUR_CONVERT_OPTION = 2;
     }
 }
