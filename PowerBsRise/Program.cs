@@ -46,8 +46,7 @@ namespace PowerBsRise
             {
                 UserInterface.DisplayMenu(Constants.MAIN_MENU_OPTIONS);
                 string choice = UserInterface.GetEndUserMenuOptionChoice();
-                maxOptionCount = Constants.MAIN_MENU_OPTIONS.Count;
-                GoToMenu(maxOptionCount, choice); //only for test 
+                GoToMenu(choice); //only for test 
             }                  
         }
         /// <summary>
@@ -56,7 +55,7 @@ namespace PowerBsRise
         /// </summary>
         /// <param name="maxOptionCount"></param>
         /// <param name="choice"></param>
-        static void GoToMenu(int maxOptionCount, string choice)
+        static void GoToMenu(string choice)
         {
             try
             {
@@ -68,10 +67,6 @@ namespace PowerBsRise
                 if (!int.TryParse(choice, out int parsedChoice)) //if parse succeeded parsedChoice will be used as the expression in the switch case to navigate
                 {
                     throw new InvalidCastException();
-                }
-                if (parsedChoice > maxOptionCount) //check if parsedChoice is higher than the menu total element count
-                {
-                    throw new IndexOutOfRangeException();
                 }
                 switch (parsedChoice)
                 {
