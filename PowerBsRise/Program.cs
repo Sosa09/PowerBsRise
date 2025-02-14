@@ -42,35 +42,47 @@ namespace PowerBsRise
             }
             UserInterface.DisplayUserAuthenticationSucceded(user.Name);
             //use a while loop approach to enter to each sub menu or go back and while it s not log out keep looping
-            while(true)
+            while (true)
             {
                 UserInterface.DisplayMenu(Constants.MAIN_MENU_OPTIONS);
                 string choice = UserInterface.GetEndUserMenuOptionChoice();
-                GoToMenu(choice); //only for test 
-            }                  
-        }
-        static void GoToMenu(string choice)
-        {
-            try
-            {
-                //todo: consider using a dedicated function to check the errors and return the exception.
+
+                //TODO consider using a dedicated function to check the errors and return the exception.
                 if (choice == null)
                 {
                     throw new ArgumentNullException(nameof(choice));
                 }
-                if (!int.TryParse(choice, out int parsedChoice)) //if parse succeeded parsedChoice will be used as the expression in the switch case to navigate
+                if (!IsValidInteger(choice)) //checks if choice is a valid int
                 {
                     throw new InvalidCastException();
                 }
-                switch (parsedChoice)
+                int parsedChoice = Convert.ToInt32(choice); //convert text base integer into an actual integer
+                NavigateToSubMenu(parsedChoice); //only for test 
+            }                  
+        }
+        static void NavigateToSubMenu(int menuOptionIndex)
+        {
+            string choice = "";
+            try
+            {             
+                switch (menuOptionIndex)
                 {
                     case Constants.MENU_OPENING_HOURS:
-                        //function to display sub menu
+                        //display opening hours menu options
                         UserInterface.DisplayMenu(Constants.OPENING_HOURS_MENU_OPTIONS);
+                        //Ask the end user to enter an menu option index
+                        choice = UserInterface.GetEndUserMenuOptionChoice();
+                        //Making sure the given menu index is a valid digit
+                        if (!IsValidInteger(choice)) { throw new InvalidCastException(); }
+                        //Converting the text based digit into an actual integer
+                        int parsedChoice = Convert.ToInt32(choice);
+                        //invoking function for working into menu option Opening Hours
+                        NavigateInOperatingHours(parsedChoice);
                         break;
                     case Constants.MENU_PROFILE:
-                        //function to display sub menu
+                        //Display profile menu options
                         UserInterface.DisplayMenu(Constants.PROFILE_MENU_OPTIONS);
+                        //MORE LATER
                         break;
                     case Constants.MENU_LOGOUT:
                         //logout return to login !
@@ -81,12 +93,19 @@ namespace PowerBsRise
             }
             catch(InvalidCastException e)
             {
+                //is raised when choice is invalid
                 UserInterface.DisplayInvalidCastErrorExceptionMessage(e.Message);
             }
-            catch(IndexOutOfRangeException e)
-            {
-                UserInterface.DisplayInvalidMenuOptionMessage(e.Message);
-            }         
+     
+        }
+        //TODO consider putting this in logic
+        static bool IsValidInteger(string textValue)
+        {
+            return int.TryParse(textValue, out int parsedChoice);
+        }
+        static void NavigateInOperatingHours(int menuOptionIndex)
+        {
+
         }
     }
 }
