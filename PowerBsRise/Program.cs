@@ -118,11 +118,11 @@ namespace PowerBsRise
             {
                 switch (menuOptionIndex)
                 {
-                    case Constants.OPENING_HOURS_FETCH:
+                    case Constants.OPERATING_HOUR_FETCH_OPTION:
                         break;
-                    case Constants.OPENING_HOURS_UPDATE:
+                    case Constants.OPERATING_HOUR_UPDATE_OPTION:
                         break;
-                    case Constants.OPENING_HOURS_CONVERT:
+                    case Constants.OPERATING_HOUR_CONVERT_OPTION:
                         break;
                     default:
                         break;
