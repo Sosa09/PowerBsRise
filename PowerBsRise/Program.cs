@@ -1,4 +1,5 @@
-﻿using PowerBsRise.Models;
+﻿using Microsoft.VisualBasic;
+using PowerBsRise.Models;
 using PowerBsRise.Services;
 using PowerBsRise.Views;
 using System;
@@ -105,7 +106,21 @@ namespace PowerBsRise
         }
         static void NavigateInOperatingHours(int menuOptionIndex)
         {
-
+            string choice = "";
+            try
+            {
+                switch (menuOptionIndex)
+                {
+                    case Constants.OPENING_HOURS_FETCH:
+                        break;
+                    case Constants.OPENING_HOURS_UPDATE:
+                        break;
+                    case Constants.OPENING_HOURS_CONVERT:
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }
