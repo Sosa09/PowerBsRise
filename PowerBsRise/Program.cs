@@ -41,6 +41,13 @@ namespace PowerBsRise
                     UserInterface.DisplayUnexpectedExceptionMessage(ex.Message);
                 }
             }
+
+            UserInterface.DisplayTestDataMessage();
+            //IMPLEMETING QUICK TEST DATA TO DISPALY A DISPLAY UNIT CONFIRMING MY DATAHANDLER ISWORKING
+            TestData td = new TestData(); //will fetch display units when instance is created
+            
+            td.FetchDisplayUnits(td.DisplayUnits);
+
             UserInterface.DisplayUserAuthenticationSucceded(user.Name);
             //use a while loop approach to enter to each sub menu or go back and while it s not log out keep looping
             while (true)
@@ -120,6 +127,9 @@ namespace PowerBsRise
                     default:
                         break;
                 }
+            }catch (Exception e)
+            {
+                //more later
             }
         }
     }

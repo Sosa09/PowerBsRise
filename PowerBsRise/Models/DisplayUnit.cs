@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace PowerBsRise.Models
 {
     public class DisplayUnit
     {
         private int _id;
-
         public int ID
         {
             get { return _id; }
@@ -57,11 +52,20 @@ namespace PowerBsRise.Models
             get { return _zip; }
             set { _zip = value; }
         }
-        public string _geolocation;
+        private string _geolocation;
         public string Geolocation
         {
             get { return _geolocation; }
             set { _geolocation = value; }
+        }
+
+        public override string ToString()
+        {
+            return 
+                $"------------------------------------\n" +
+                $"{Name}:\n" +
+                $"ID:\t{ID}\n" +
+                $"Address: {Address}\n";
         }
     }
 }

@@ -25,5 +25,9 @@ namespace PowerBsRise.Services
         {
             throw new NotImplementedException();
         }
+        public List<T> GetAll()
+        {
+            return _listOfObjects;
+        }
     }
 }

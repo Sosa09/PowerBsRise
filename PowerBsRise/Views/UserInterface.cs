@@ -72,9 +72,10 @@ namespace PowerBsRise.Views
             throw new NotImplementedException();
         }
 
-        internal static void DisplayMenu(object pROFILE_MENU_OPTIONS)
+        internal static void DisplayTestDataMessage()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("The system is running in test mode you ll see information that is not relevant or unnecessary");
         }
+
     }
 }
