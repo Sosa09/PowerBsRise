@@ -49,12 +49,6 @@ namespace PowerBsRise
                 GoToMenu(choice); //only for test 
             }                  
         }
-        /// <summary>
-        /// function will handle the navigation from the main menu it takes 2 params one that will count the total elements present in the displayed menu 
-        /// and other one is used to navigate to the correct menu
-        /// </summary>
-        /// <param name="maxOptionCount"></param>
-        /// <param name="choice"></param>
         static void GoToMenu(string choice)
         {
             try
@@ -70,22 +64,20 @@ namespace PowerBsRise
                 }
                 switch (parsedChoice)
                 {
-                    case 0:
+                    case Constants.MENU_OPENING_HOURS:
+                        //function to display sub menu
                         UserInterface.DisplayMenu(Constants.OPENING_HOURS_MENU_OPTIONS);
                         break;
-                    case 1:
+                    case Constants.MENU_PROFILE:
+                        //function to display sub menu
                         UserInterface.DisplayMenu(Constants.PROFILE_MENU_OPTIONS);
                         break;
-                    case 2:
+                    case Constants.MENU_LOGOUT:
                         //logout return to login !
                         break;
                     default:
                         break;
                 }
-            }
-            catch (ArgumentNullException e)
-            {
-                //todo: implement message for null exception
             }
             catch(InvalidCastException e)
             {
