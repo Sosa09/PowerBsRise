@@ -30,8 +30,9 @@ namespace PowerBsRise
             var content = _fileHandler.GetContent(Constants.PATH_TO_RESOURCES + resourceFile);
             var baseOutput = JsonConvert.DeserializeObject<Dictionary<string, object>>(content);//get the main output with 2 keys that needs to be extracted not_modified_since and the resourceKeyName
             var resourceKey = baseOutput.Keys.LastOrDefault(); //extract the resource key which is always in the second place
+            var resourceContent = baseOutput[resourceKey].ToString();
             //convert from json ? char to check for nulls
-            List<T>? values = JsonConvert.DeserializeObject<List<T>>(baseOutput[resourceKey].ToString()) ;
+            List<T>? values = JsonConvert.DeserializeObject<List<T>>(resourceContent) ;
             //iterate through each element to add them into DataHandler's resource specific type
             foreach(T value in values)
             {
