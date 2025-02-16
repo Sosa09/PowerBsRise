@@ -12,6 +12,18 @@ namespace PowerBsRise
     {
         static void Main(string[] args)
         {
+            //------------------------------------------------------------------------------------------------------------------
+            //JUST SOME TEST BEFORE STARTING
+            UserInterface.DisplayTestDataMessage();
+            //IMPLEMETING QUICK TEST DATA TO DISPALY A DISPLAY UNIT CONFIRMING MY DATAHANDLER ISWORKING
+            TestData td = new TestData(); //will fetch display units when instance is created
+            //USING HARDCODED TEXT JUST FOR THE TEST WILL BE DELETED!
+            td.FetchResources("Display Units",td.DisplayUnitObjects);
+            td.FetchResources("Hosts", td.HostObjects);
+            td.FetchResources("Skins",td.SkinObjects);
+            td.FetchResources("Day Parts",td.DayPartObjects);
+            //------------------------------------------------------------------------------------------------------------------
+
             User user = new User();
             int maxOptionCount = new int();
             //instruction to authenticate user
@@ -42,12 +54,6 @@ namespace PowerBsRise
                 }
             }
 
-            UserInterface.DisplayTestDataMessage();
-            //IMPLEMETING QUICK TEST DATA TO DISPALY A DISPLAY UNIT CONFIRMING MY DATAHANDLER ISWORKING
-            TestData td = new TestData(); //will fetch display units when instance is created
-            
-            td.FetchDisplayUnits(td.DisplayUnits);
-
             UserInterface.DisplayUserAuthenticationSucceded(user.Name);
             //use a while loop approach to enter to each sub menu or go back and while it s not log out keep looping
             while (true)
@@ -70,7 +76,7 @@ namespace PowerBsRise
         }
         static void NavigateToSubMenu(int menuOptionIndex)
         {
-            string choice = "";
+            string choice = string.Empty;
             try
             {             
                 switch (menuOptionIndex)
@@ -113,7 +119,7 @@ namespace PowerBsRise
         }
         static void NavigateInOperatingHours(int menuOptionIndex)
         {
-            string choice = "";
+            string choice = string.Empty;
             try
             {
                 switch (menuOptionIndex)

@@ -2,39 +2,47 @@
 using PowerBsRise.Services;
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using System.Linq;
+using Newtonsoft.Json.Linq;
+
 namespace PowerBsRise
 {
     public class TestData
     {
-        public DataHandler<DisplayUnit> DisplayUnits;
+        public DataHandler<DisplayUnit> DisplayUnitObjects;
         public DataHandler<Host> HostObjects;
-        public DataHandler<OperatingHour> OperatingHours;        
+        public DataHandler<DayPart> DayPartObjects;
+        public DataHandler<Frame> SkinObjects;
+        private FileHandler _fileHandler;
         public TestData()
         {
-            DisplayUnits = new DataHandler<DisplayUnit>();
-            HostObjects = new DataHandler<Host>();
-            OperatingHours = new DataHandler<OperatingHour>();
-            GeneratingDisplayUnits(DisplayUnits);
+            _fileHandler = new FileHandler();
+            DisplayUnitObjects = GenerateResources<DisplayUnit>(Constants.DISPLAY_UNITS_DATA_FILE);
+            HostObjects = GenerateResources<Host>(Constants.HOSTS_DATA_FILE);
+            DayPartObjects = GenerateResources<DayPart>(Constants.DAY_PARTS_DATA_FILE);
+            SkinObjects = GenerateResources<Frame>(Constants.SKINS_DATA_FILE);                  
         }
-        private void GeneratingDisplayUnits(DataHandler<DisplayUnit> du)
+        public DataHandler<T> GenerateResources<T>(string resourceFile)
         {
-            DisplayUnit displayUnit = new DisplayUnit()
+            DataHandler<T> resource = new DataHandler<T>();
+            //read the json data
+            var content = _fileHandler.GetContent(Constants.PATH_TO_RESOURCES + resourceFile);
+            var baseOutput = JsonConvert.DeserializeObject<Dictionary<string, object>>(content);//get the main output with 2 keys that needs to be extracted not_modified_since and the resourceKeyName
+            var resourceKey = baseOutput.Keys.LastOrDefault(); //extract the resource key which is always in the second place
+            //convert from json ? char to check for nulls
+            List<T>? values = JsonConvert.DeserializeObject<List<T>>(baseOutput[resourceKey].ToString()) ;
+            //iterate through each element to add them into DataHandler's resource specific type
+            foreach(T value in values)
             {
-                Name = "BE-RO-VIL-P001",
-                Address = "Havenstraat 17, 1800 Vilvoorde BELGIUM",
-                DayParts = new List<DayPart>(), //just leave it empty for the test.
-                DisplayTypeResolution = new DisplayTypeResolution(), //empty
-                Geolocation = "lat/lon",
-                Hosts = HostObjects.GetAll(),
-                ID = 0,
-                Zip = 1800
-            };
-            du.Add(displayUnit);
+                resource.Add(value);
+            }
+            return resource;
         }
-        public void FetchDisplayUnits(DataHandler<DisplayUnit> du)
+        public void FetchResources<T>(string resource, DataHandler<T> dataHandler)
         {
-            Console.WriteLine("SHOWING DISPLAY UNITS");
-            du.GetAll().ForEach(x => { Console.WriteLine(x.ToString()); });
+            Console.WriteLine(resource);
+            dataHandler.GetAll().ForEach(x => { Console.WriteLine(x.ToString());});
         }
     }
 }
