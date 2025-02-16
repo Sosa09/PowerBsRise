@@ -20,7 +20,6 @@ namespace PowerBsRise.Services
         {
             _listOfObjects.Remove(obj);
         }
-
         public T Get(int id) 
         {
             throw new NotImplementedException();

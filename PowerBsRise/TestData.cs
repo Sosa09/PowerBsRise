@@ -2,10 +2,6 @@
 using PowerBsRise.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace PowerBsRise
 {
     public class TestData
@@ -20,7 +16,6 @@ namespace PowerBsRise
             OperatingHours = new DataHandler<OperatingHour>();
             GeneratingDisplayUnits(DisplayUnits);
         }
-
         private void GeneratingDisplayUnits(DataHandler<DisplayUnit> du)
         {
             DisplayUnit displayUnit = new DisplayUnit()
@@ -34,11 +29,8 @@ namespace PowerBsRise
                 ID = 0,
                 Zip = 1800
             };
-
             du.Add(displayUnit);
- 
         }
-
         public void FetchDisplayUnits(DataHandler<DisplayUnit> du)
         {
             Console.WriteLine("SHOWING DISPLAY UNITS");
