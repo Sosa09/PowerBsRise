@@ -63,7 +63,7 @@ namespace PowerBsRise
                 {
                     throw new ArgumentNullException(nameof(choice));
                 }
-                if (!IsValidInteger(choice)) //checks if choice is a valid int
+                if (!ProgramLogic.IsValidInteger(choice)) //checks if choice is a valid int
                 {
                     throw new InvalidCastException();
                 }
@@ -84,7 +84,7 @@ namespace PowerBsRise
                         //Ask the end user to enter an menu option index
                         choice = UserInterface.GetEndUserMenuOptionChoice();
                         //Making sure the given menu index is a valid digit
-                        if (!IsValidInteger(choice)) { throw new InvalidCastException(); }
+                        if (!ProgramLogic.IsValidInteger(choice)) { throw new InvalidCastException(); }
                         //Converting the text based digit into an actual integer
                         int parsedChoice = Convert.ToInt32(choice);
                         //invoking function for working into menu option Opening Hours
@@ -108,11 +108,6 @@ namespace PowerBsRise
                 UserInterface.DisplayInvalidCastErrorExceptionMessage(e.Message);
             }
      
-        }
-        //TODO consider putting this in logic
-        static bool IsValidInteger(string textValue)
-        {
-            return int.TryParse(textValue, out int parsedChoice);
         }
         static void NavigateInOperatingHours(int menuOptionIndex)
         {
