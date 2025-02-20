@@ -45,5 +45,7 @@ namespace PowerBsRise
             Console.WriteLine(resource);
             dataHandler.GetAll().ForEach(x => { Console.WriteLine(x.ToString());});
         }
+
+        //Testing api service
     }
 }

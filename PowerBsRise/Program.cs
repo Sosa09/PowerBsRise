@@ -23,9 +23,7 @@ namespace PowerBsRise
             td.FetchResources("Skins",td.SkinObjects);
             td.FetchResources("Day Parts",td.DayPartObjects);
             //------------------------------------------------------------------------------------------------------------------
-
             User user = new User();
-            int maxOptionCount = new int();
             //instruction to authenticate user
             while (user.GetUserAuthenticationStatus() == Authorization.Unauthorized)
             {
@@ -53,7 +51,6 @@ namespace PowerBsRise
                     UserInterface.DisplayUnexpectedExceptionMessage(ex.Message);
                 }
             }
-
             UserInterface.DisplayUserAuthenticationSucceded(user.Name);
             //use a while loop approach to enter to each sub menu or go back and while it s not log out keep looping
             while (true)
