@@ -26,10 +26,8 @@ namespace PowerBsRise.Services
             } 
         }
         private ApiService() 
-        {             
-                
+        {                            
         }
-
         public HttpResponseMessage get_api_request(string token, string requestUri)
         {
             try

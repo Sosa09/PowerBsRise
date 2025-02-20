@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Linq;
 using Newtonsoft.Json.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace PowerBsRise
 {
@@ -47,5 +49,47 @@ namespace PowerBsRise
         }
 
         //Testing api service
+        public string TestApiGetRequest(string token, string requestUri)
+        {
+            try
+            {
+                ApiService apiService = ApiService.Instance;
+                var raw_content = apiService.get_api_request(token, requestUri);
+                return raw_content.Content.ToString();
+            }
+            catch (ArgumentException ex)
+            {
+                throw new ArgumentException(ex.Message);
+            }
+            catch (UriFormatException ex)
+            {
+                throw new UriFormatException(ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw new InvalidOperationException(ex.Message);
+            }
+            catch (FormatException ex)
+            {
+                throw new FormatException(ex.Message);
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new HttpRequestException(ex.Message);
+            }
+            catch (TaskCanceledException ex)
+            {
+                throw new TaskCanceledException(ex.Message);
+            }
+            catch (AggregateException ex)
+            {
+                throw new AggregateException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+        }
     }
 }

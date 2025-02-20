@@ -1,16 +1,10 @@
-﻿using PowerBsRise.Models;
-
-namespace PowerBsRise.Services
+﻿namespace PowerBsRise.Services
 {
     public static class UserService
     {
         public static void LoadProfile()
         {
-            //can only be loaded if user has been authenticated properly
-    
-            
+            //can only be loaded if user has been authenticated properly            
         }
-
-
     }
 }
