@@ -30,6 +30,7 @@ namespace PowerBsRise.Services
         }
         public HttpResponseMessage get_api_request(string token, string requestUri)
         {
+            //todo add exceptions based on the status code
             try
             {
                 using (_httpClient = new HttpClient())
@@ -37,7 +38,7 @@ namespace PowerBsRise.Services
                     _response = new HttpResponseMessage();
                     _httpClient.BaseAddress = new Uri(Constants.BS_PRD_API_ENDPOINT);
                     _httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
-                    _httpClient.DefaultRequestHeaders.Add("Authorization", $"Baerer {token}");
+                    _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
                     _response = _httpClient.GetAsync(requestUri).Result;
                 }
             }catch (ArgumentException ex)

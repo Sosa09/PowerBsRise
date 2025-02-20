@@ -76,6 +76,15 @@ namespace PowerBsRise.Views
         {
             Console.WriteLine("The system is running in test mode you ll see information that is not relevant or unnecessary");
         }
-
+        public static string GetApiToken()
+        {
+            Console.WriteLine("Please enter your api authorization baerer token: ");
+            return Console.ReadLine();
+        }
+        //this is temporary to dislpay test data error message exceptions
+        internal static void DisplayTestDataException(string message)
+        {
+            Console.WriteLine(message);
+        }
     }
 }

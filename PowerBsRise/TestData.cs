@@ -55,7 +55,7 @@ namespace PowerBsRise
             {
                 ApiService apiService = ApiService.Instance;
                 var raw_content = apiService.get_api_request(token, requestUri);
-                return raw_content.Content.ToString();
+                return raw_content.Content.ReadAsStringAsync().Result;
             }
             catch (ArgumentException ex)
             {

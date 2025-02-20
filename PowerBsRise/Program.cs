@@ -4,7 +4,9 @@ using PowerBsRise.Services;
 using PowerBsRise.Views;
 using System;
 using System.IO;
+using System.Net.Http;
 using System.Security.Authentication;
+using System.Threading.Tasks;
 
 namespace PowerBsRise
 {
@@ -23,6 +25,51 @@ namespace PowerBsRise
             td.FetchResources("Skins",td.SkinObjects);
             td.FetchResources("Day Parts",td.DayPartObjects);
             //------------------------------------------------------------------------------------------------------------------
+            //TESTING API REQUEST
+            //getting api token
+            try
+            {
+                string token = UserInterface.GetApiToken();
+                string requestUri = Constants.DSIPLAY_UNITS;
+                string content = td.TestApiGetRequest(token, requestUri);
+                Console.WriteLine(content);
+            }
+            catch (ArgumentException ex)
+            {
+                UserInterface.DisplayTestDataException(ex.Message);
+            }
+            catch (UriFormatException ex)
+            {
+                UserInterface.DisplayTestDataException(ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                UserInterface.DisplayTestDataException(ex.Message);
+            }
+            catch (FormatException ex)
+            {
+                UserInterface.DisplayTestDataException(ex.Message); 
+            }
+            catch (HttpRequestException ex)
+            {
+                UserInterface.DisplayTestDataException(ex.Message); 
+            }
+            catch (TaskCanceledException ex)
+            {
+                UserInterface.DisplayTestDataException(ex.Message); 
+            }
+            catch (AggregateException ex)
+            {
+                UserInterface.DisplayTestDataException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                UserInterface.DisplayTestDataException(ex.Message);
+            }
+
+            //------------------------------------------------------------------------------------------------------------------
+            //------------------------------------------------------------------------------------------------------------------
+
             User user = new User();
             //instruction to authenticate user
             while (user.GetUserAuthenticationStatus() == Authorization.Unauthorized)
