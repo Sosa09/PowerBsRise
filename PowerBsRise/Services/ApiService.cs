@@ -9,9 +9,9 @@ namespace PowerBsRise.Services
     //class will handle the http request to and from broadsign cms
     public class ApiService
     {
-        private ApiService _instance;
+        private static ApiService _instance;
         private object _instanceLock = new object();
-        public ApiService Instance 
+        public static ApiService Instance 
         { 
             get 
             { 
@@ -26,5 +26,7 @@ namespace PowerBsRise.Services
             } 
         }
         private ApiService() { }
+
+
     }
 }
