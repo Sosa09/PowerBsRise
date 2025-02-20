@@ -10,7 +10,7 @@ namespace PowerBsRise.Services
     public class ApiService
     {
         private static ApiService _instance;
-        private object _instanceLock = new object();
+        private static object _instanceLock = new object();
         public static ApiService Instance 
         { 
             get 
