@@ -2,7 +2,7 @@
 
 namespace PowerBsRise.Models
 {
-    public class DayPart
+    public class DayPart : ICommonPropertyResource
     {
         private int _id;
         public int ID

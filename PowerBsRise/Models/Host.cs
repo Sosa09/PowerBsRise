@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PowerBsRise.Models
 {
-    public class Host
+    public class Host : ICommonPropertyResource
     {
         //id from broadsign
         private int _id;

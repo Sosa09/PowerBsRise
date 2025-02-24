@@ -1,10 +1,11 @@
-﻿using Microsoft.VisualBasic;
-using PowerBsRise.Models;
+﻿using PowerBsRise.Models;
 using PowerBsRise.Services;
 using PowerBsRise.Views;
 using System;
 using System.IO;
+using System.Net.Http;
 using System.Security.Authentication;
+using System.Threading.Tasks;
 
 namespace PowerBsRise
 {
@@ -12,20 +13,64 @@ namespace PowerBsRise
     {
         static void Main(string[] args)
         {
+
             //------------------------------------------------------------------------------------------------------------------
             //JUST SOME TEST BEFORE STARTING
             UserInterface.DisplayTestDataMessage();
-            //IMPLEMETING QUICK TEST DATA TO DISPALY A DISPLAY UNIT CONFIRMING MY DATAHANDLER ISWORKING
-            TestData td = new TestData(); //will fetch display units when instance is created
-            //USING HARDCODED TEXT JUST FOR THE TEST WILL BE DELETED!
-            td.FetchResources("Display Units",td.DisplayUnitObjects);
-            td.FetchResources("Hosts", td.HostObjects);
-            td.FetchResources("Skins",td.SkinObjects);
-            td.FetchResources("Day Parts",td.DayPartObjects);
+            
+            //------------------------------------------------------------------------------------------------------------------
+            //TESTING API REQUEST
+            //getting api token
+            try
+            {
+                string token = UserInterface.GetApiToken();
+
+                //IMPLEMETING QUICK TEST DATA TO DISPALY A DISPLAY UNIT CONFIRMING MY DATAHANDLER ISWORKING
+                TestData td = new TestData(token); //will fetch display units when instance is created
+                //USING HARDCODED TEXT JUST FOR THE TEST WILL BE DELETED!
+                UserInterface.DisplayResourceContent(td.DisplayUnitObjects);
+                UserInterface.DisplayResourceContent(td.HostObjects);
+                UserInterface.DisplayResourceContent(td.DayPartObjects);
+                UserInterface.DisplayResourceContent(td.SkinObjects);
+            }
+            catch (ArgumentException ex)
+            {
+                UserInterface.DisplayTestDataException(ex.Message);
+            }
+            catch (UriFormatException ex)
+            {
+                UserInterface.DisplayTestDataException(ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                UserInterface.DisplayTestDataException(ex.Message);
+            }
+            catch (FormatException ex)
+            {
+                UserInterface.DisplayTestDataException(ex.Message); 
+            }
+            catch (HttpRequestException ex)
+            {
+                UserInterface.DisplayTestDataException(ex.Message); 
+            }
+            catch (TaskCanceledException ex)
+            {
+                UserInterface.DisplayTestDataException(ex.Message); 
+            }
+            catch (AggregateException ex)
+            {
+                UserInterface.DisplayTestDataException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                UserInterface.DisplayTestDataException(ex.Message);
+            }
+            //END TEST
+            //------------------------------------------------------------------------------------------------------------------
             //------------------------------------------------------------------------------------------------------------------
 
             User user = new User();
-            int maxOptionCount = new int();
+            
             //instruction to authenticate user
             while (user.GetUserAuthenticationStatus() == Authorization.Unauthorized)
             {
@@ -53,7 +98,6 @@ namespace PowerBsRise
                     UserInterface.DisplayUnexpectedExceptionMessage(ex.Message);
                 }
             }
-
             UserInterface.DisplayUserAuthenticationSucceded(user.Name);
             //use a while loop approach to enter to each sub menu or go back and while it s not log out keep looping
             while (true)
@@ -66,7 +110,7 @@ namespace PowerBsRise
                 {
                     throw new ArgumentNullException(nameof(choice));
                 }
-                if (!IsValidInteger(choice)) //checks if choice is a valid int
+                if (!ProgramLogic.IsValidInteger(choice)) //checks if choice is a valid int
                 {
                     throw new InvalidCastException();
                 }
@@ -87,7 +131,7 @@ namespace PowerBsRise
                         //Ask the end user to enter an menu option index
                         choice = UserInterface.GetEndUserMenuOptionChoice();
                         //Making sure the given menu index is a valid digit
-                        if (!IsValidInteger(choice)) { throw new InvalidCastException(); }
+                        if (!ProgramLogic.IsValidInteger(choice)) { throw new InvalidCastException(); }
                         //Converting the text based digit into an actual integer
                         int parsedChoice = Convert.ToInt32(choice);
                         //invoking function for working into menu option Opening Hours
@@ -111,11 +155,6 @@ namespace PowerBsRise
                 UserInterface.DisplayInvalidCastErrorExceptionMessage(e.Message);
             }
      
-        }
-        //TODO consider putting this in logic
-        static bool IsValidInteger(string textValue)
-        {
-            return int.TryParse(textValue, out int parsedChoice);
         }
         static void NavigateInOperatingHours(int menuOptionIndex)
         {

@@ -8,10 +8,6 @@ namespace PowerBsRise
     {   
         StreamReader _streamReader;
         StreamWriter _streamWriter;
-        public FileHandler()
-        {
-
-        }
         public string GetContent(string file)
         {
             try

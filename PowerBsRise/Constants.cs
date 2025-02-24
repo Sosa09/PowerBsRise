@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace PowerBsRise
 {
@@ -9,7 +10,12 @@ namespace PowerBsRise
         public const string HOSTS_DATA_FILE = "hosts.json";
         public const string DISPLAY_UNITS_DATA_FILE = "display_units.json";
         public const string SKINS_DATA_FILE = "skins.json";
-        public const string DAY_PARTS_DATA_FILE = "day_parts.json";
+        public const string DAY_PARTS_DATA_FILE = "day_parts.json"; 
+        public const string HOSTS_API_PATH = "/rest/host/v17";
+        public const string DISPLAY_UNITS_API_PATH = "/rest/display_unit/v12";
+        public const string SKINS_API_PATH = "/rest/skin/v7";
+        public const string DAY_PARTS_API_PATH = "/rest/day_part/v5";
+        public const string BS_PRD_API_ENDPOINT = @"https://api.broadsign.com:10889";
         readonly public static List<string> MAIN_MENU_OPTIONS = new List<string> { "Opening hours", "My profile", "Logout" };
         readonly public static List<string> OPENING_HOURS_MENU_OPTIONS = new List<string> { "Get Opening Hours","Update Opening Hours", "Convert Opening Hours"};
         readonly public static List<string> PROFILE_MENU_OPTIONS = new List<string> { "Change Password", "My Permissions"};
@@ -19,5 +25,6 @@ namespace PowerBsRise
         public const int OPERATING_HOUR_FETCH_OPTION = 0;
         public const int OPERATING_HOUR_UPDATE_OPTION = 1;        
         public const int OPERATING_HOUR_CONVERT_OPTION = 2;
+
     }
 }

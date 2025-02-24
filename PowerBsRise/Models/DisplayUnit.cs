@@ -2,7 +2,7 @@
 
 namespace PowerBsRise.Models
 {
-    public class DisplayUnit
+    public class DisplayUnit : ICommonPropertyResource
     {
         private int _id;
         public int ID
