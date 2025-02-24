@@ -10,18 +10,19 @@ namespace PowerBsRise
 {
     public class TestData
     {
-        public DataHandler<DisplayUnit> DisplayUnitObjects;
-        public DataHandler<Host> HostObjects;
-        public DataHandler<DayPart> DayPartObjects;
-        public DataHandler<Frame> SkinObjects;
+        public ApiDataHandler<DisplayUnit> DisplayUnitObjects;
+        public ApiDataHandler<Host> HostObjects;
+        public ApiDataHandler<DayPart> DayPartObjects;
+        public ApiDataHandler<Frame> SkinObjects;
         private FileHandler _fileHandler;
-        public TestData()
+        public string Token { get; set; }
+        public TestData(string Token)
         {
             _fileHandler = new FileHandler();
-            DisplayUnitObjects = GenerateResources<DisplayUnit>(Constants.DISPLAY_UNITS_DATA_FILE);
-            HostObjects = GenerateResources<Host>(Constants.HOSTS_DATA_FILE);
-            DayPartObjects = GenerateResources<DayPart>(Constants.DAY_PARTS_DATA_FILE);
-            SkinObjects = GenerateResources<Frame>(Constants.SKINS_DATA_FILE);                  
+            DisplayUnitObjects = ProgramLogic.InitializeBroadsignResource<DisplayUnit>(Token, Constants.DISPLAY_UNITS_API_PATH);
+            HostObjects = ProgramLogic.InitializeBroadsignResource<Host>(Token, Constants.HOSTS_API_PATH);
+            DayPartObjects = ProgramLogic.InitializeBroadsignResource<DayPart>(Token, Constants.DAY_PARTS_API_PATH);
+            SkinObjects = ProgramLogic.InitializeBroadsignResource<Frame>(Token, Constants.SKINS_API_PATH);                  
         }
         public DataHandler<T> GenerateResources<T>(string resourceFile)
         {
@@ -40,11 +41,7 @@ namespace PowerBsRise
             }
             return resource;
         }
-        public void FetchResources<T>(string resource, DataHandler<T> dataHandler)
-        {
-            Console.WriteLine(resource);
-            dataHandler.GetAll().ForEach(x => { Console.WriteLine(x.ToString());});
-        }
+
         //Testing api service
         public string TestApiGetRequest(string token, string requestUri)
         {

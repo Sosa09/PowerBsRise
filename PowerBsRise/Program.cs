@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using PowerBsRise.Models;
+﻿using PowerBsRise.Models;
 using PowerBsRise.Services;
 using PowerBsRise.Views;
 using System;
@@ -14,25 +13,25 @@ namespace PowerBsRise
     {
         static void Main(string[] args)
         {
+
             //------------------------------------------------------------------------------------------------------------------
             //JUST SOME TEST BEFORE STARTING
             UserInterface.DisplayTestDataMessage();
-            //IMPLEMETING QUICK TEST DATA TO DISPALY A DISPLAY UNIT CONFIRMING MY DATAHANDLER ISWORKING
-            TestData td = new TestData(); //will fetch display units when instance is created
-            //USING HARDCODED TEXT JUST FOR THE TEST WILL BE DELETED!
-            td.FetchResources("Display Units",td.DisplayUnitObjects);
-            td.FetchResources("Hosts", td.HostObjects);
-            td.FetchResources("Skins",td.SkinObjects);
-            td.FetchResources("Day Parts",td.DayPartObjects);
+            
             //------------------------------------------------------------------------------------------------------------------
             //TESTING API REQUEST
             //getting api token
             try
             {
                 string token = UserInterface.GetApiToken();
-                string requestUri = Constants.DSIPLAY_UNITS;
-                string content = td.TestApiGetRequest(token, requestUri);
-                Console.WriteLine(content);
+
+                //IMPLEMETING QUICK TEST DATA TO DISPALY A DISPLAY UNIT CONFIRMING MY DATAHANDLER ISWORKING
+                TestData td = new TestData(token); //will fetch display units when instance is created
+                //USING HARDCODED TEXT JUST FOR THE TEST WILL BE DELETED!
+                UserInterface.DisplayResourceContent(td.DisplayUnitObjects);
+                UserInterface.DisplayResourceContent(td.HostObjects);
+                UserInterface.DisplayResourceContent(td.DayPartObjects);
+                UserInterface.DisplayResourceContent(td.SkinObjects);
             }
             catch (ArgumentException ex)
             {

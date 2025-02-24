@@ -1,4 +1,5 @@
-﻿using PowerBsRise.Services;
+﻿using PowerBsRise.Models;
+using PowerBsRise.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,18 @@ namespace PowerBsRise
         {
             return int.TryParse(textValue, out int parsedChoice);
         }
-
-        public static void InitializeBroadsignResource(string token)
+        public static ApiDataHandler<T> InitializeBroadsignResource<T>(string token, string requestUri) where T : ICommonPropertyResource
         {
-            ApiDataHandler apiDataHandler = new ApiDataHandler();
+            ApiDataHandler<T> handler = new ApiDataHandler<T>();
+            var apiContent = FetchApiData(token, requestUri);
+            handler.AddResourcesFromJsonString(apiContent);
+            return handler;
+        }
+        private static string FetchApiData(string token, string requestUri)
+        {
+            var apiServiceInstance = ApiService.Instance;
+            var res = apiServiceInstance.get_api_request(token, requestUri);
+            return res.Content.ReadAsStringAsync().Result;
 
         }
     }

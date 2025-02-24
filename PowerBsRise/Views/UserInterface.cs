@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PowerBsRise.Models;
+using PowerBsRise.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -85,6 +87,11 @@ namespace PowerBsRise.Views
         internal static void DisplayTestDataException(string message)
         {
             Console.WriteLine(message);
+        }
+
+        internal static void DisplayResourceContent<T>(ApiDataHandler<T> resourceData) where T : ICommonPropertyResource
+        {
+            resourceData.GetAllResources().ForEach(x => Console.WriteLine(x.ToString())); //returns the passed object to string if tostring is overriden a proper text will be displayed
         }
     }
 }

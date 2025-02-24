@@ -13,7 +13,6 @@ namespace PowerBsRise.Services
     /// <typeparam name="T"></typeparam>
     public class ApiDataHandler<T> where T : ICommonPropertyResource
     {
-
         List<T> resourceValues = new List<T>();
         /// <summary>
         /// 
