@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PowerBsRise.Models
 {
-    public class Frame
+    public class Frame : ICommonPropertyResource
     {
         private int _id;
 

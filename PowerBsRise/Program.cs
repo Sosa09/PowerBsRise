@@ -66,11 +66,12 @@ namespace PowerBsRise
             {
                 UserInterface.DisplayTestDataException(ex.Message);
             }
-
+            //END TEST
             //------------------------------------------------------------------------------------------------------------------
             //------------------------------------------------------------------------------------------------------------------
 
             User user = new User();
+            
             //instruction to authenticate user
             while (user.GetUserAuthenticationStatus() == Authorization.Unauthorized)
             {

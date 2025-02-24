@@ -4,10 +4,8 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Linq;
-using Newtonsoft.Json.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-
 namespace PowerBsRise
 {
     public class TestData
@@ -47,7 +45,6 @@ namespace PowerBsRise
             Console.WriteLine(resource);
             dataHandler.GetAll().ForEach(x => { Console.WriteLine(x.ToString());});
         }
-
         //Testing api service
         public string TestApiGetRequest(string token, string requestUri)
         {
@@ -89,7 +86,6 @@ namespace PowerBsRise
             {
                 throw new Exception(ex.ToString());
             }
-
         }
     }
 }
